@@ -1,22 +1,7 @@
 # Bluesky PDS Directory
 
-A community-maintained directory of Bluesky Personal Data Servers (PDS).
-
-## About
-
-This project provides a simple, searchable directory of available Bluesky PDS instances. Users can browse servers, view their policies, and find the right PDS for their needs.
-
-## Files
-
-- `index.html` - Main web application
-- `pdslist.json` - Database of PDS servers
-- `README.md` - This file
-
-## Getting Started
-
-1. Clone this repository
-2. Open `index.html` in your web browser
-3. No build process required!
+**WILL MOVE TO Tangled SOON*tm***
+A community-maintained directory of Bluesky Personal Data Servers *(PDS)*.
 
 ## JSON Structure
 
@@ -24,11 +9,11 @@ The `pdslist.json` file contains an array of PDS server objects. Each object has
 
 ```json
 {
-  "url": "https://your-pds.example.com",
+  "url": "https://ypds.example.com",
   "supportedHandles": ["*.example.com", "*.example.net"],
   "maintainer": "@your-handle.example.com",
-  "tosUrl": "https://your-pds.example.com/terms",
-  "privacyUrl": "https://your-pds.example.com/privacy",
+  "tosUrl": "https://pds.example.com/terms",
+  "privacyUrl": "https://pds.example.com/privacy",
   "inviteCodeRequired": false
 }
 ```
