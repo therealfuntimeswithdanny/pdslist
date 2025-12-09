@@ -56,8 +56,7 @@ We welcome additions to the directory! There are two ways to add your PDS:
 
 1. Go to the [Issues](../../issues) page
 2. Click "New Issue"
-3. Select the "Add New PDS" template (or create a new issue)
-4. Fill in the template with your PDS information:
+3. Add your PDS information:
    - PDS URL
    - Supported handles
    - Your maintainer handle
@@ -65,7 +64,7 @@ We welcome additions to the directory! There are two ways to add your PDS:
    - Terms of Service URL (if available)
    - Privacy Policy URL (if available)
    - Whether invite codes are required
-5. Submit the issue
+4. Submit the issue
 
 A maintainer will review your submission and add it to the list.
 
