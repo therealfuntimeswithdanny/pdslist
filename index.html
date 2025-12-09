@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluesky PDS Directory</title>
+</head>
+<body>
+    <h1>Bluesky PDS Directory</h1>
+    <p>Community-maintained database of Personal Data Servers</p>
+    <p><a href="README.md">Add a PDS</a></p>
+
+    <div id="loading">
+        <p>Loading database...</p>
+    </div>
+
+    <div id="content" style="display: none;">
+        <p>Total Servers: <strong id="server-count">0</strong></p>
+        
+        <table id="pds-table" border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Handles</th>
+                    <th>Maintainer</th>
+                    <th>Email</th>
+                    <th>Invite Code Required</th>
+                    <th>Terms</th>
+                    <th>Privacy</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+
+        <div id="no-data" style="display: none;">
+            <p>No PDS servers found.</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

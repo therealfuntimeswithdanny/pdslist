@@ -1,0 +1,40 @@
+[
+  {
+    "url": "https://bsky.social",
+    "supportedHandles": [
+      "*.bsky.social"
+    ],
+    "maintainer": "@bsky.app",
+    "tosUrl": "https://bsky.social/about/support/tos",
+    "privacyUrl": "https://bsky.social/about/support/privacy-policy",
+    "inviteCodeRequired": false
+  },
+  {
+    "url": "https://pds.madebydanny.uk",
+    "supportedHandles": [
+      ".pds.madebydanny.uk",
+      ".pds.danielmorrisey.com",
+      ".good-example.com",
+      ".mbdio.uk.",
+      "certifiedshitposter.com"
+    ],
+    "contactEmail": "danielmorrisey@pm.me",
+    "maintainer": "@madebydanny.uk",
+    "tosUrl": "https://pds.madebydanny.uk/about/privacy.html",
+    "privacyUrl": "https://pds.madebydanny.uk/about/terms.html",
+    "inviteCodeRequired": false
+  },
+ {
+    "url": "https://blacksky.app",
+    "supportedHandles": [
+      ".myatproto.social",
+      ".blacksky.app",
+      ".cryptoanarchy.network"
+    ],
+    "contactEmail": "support@blacksky.app",
+    "maintainer": "@blackskyweb.xyz",
+    "tosUrl": "https://blackskyweb.xyz/about/support/privacy-policy/",
+    "privacyUrl": "https://blackskyweb.xyz/about/support/tos/",
+    "inviteCodeRequired": false
+  } 
+]
