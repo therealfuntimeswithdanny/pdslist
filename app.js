@@ -63,12 +63,12 @@ function createTableRow(pds) {
     const maintainerCell = document.createElement('td');
     if (pds.maintainer) {
         const link = document.createElement('a');
-        link.href = `https://bsky.app/profile/${pds.maintainer}`;
+        link.href = `https://madebydanny.uk/followonbsky?did=${pds.maintainer}`;
         link.target = '_blank';
         link.textContent = pds.maintainer;
         maintainerCell.appendChild(link);
     } else {
-        maintainerCell.textContent = 'N/A';
+        maintainerCell.textContent = '—';
     }
     row.appendChild(maintainerCell);
     
@@ -80,7 +80,7 @@ function createTableRow(pds) {
         link.textContent = pds.contactEmail;
         emailCell.appendChild(link);
     } else {
-        emailCell.textContent = 'N/A';
+        emailCell.textContent = '—';
     }
     row.appendChild(emailCell);
     

@@ -36,5 +36,24 @@
     "tosUrl": "https://blackskyweb.xyz/about/support/privacy-policy/",
     "privacyUrl": "https://blackskyweb.xyz/about/support/tos/",
     "inviteCodeRequired": false
+  },
+   {
+    "url": "https://selfhosted.social",
+    "supportedHandles": [
+      ".selfhosted.social"
+    ],
+    "contactEmail": "modmail@selfhosted.social",
+    "maintainer": "@baileytownsend.dev",
+    "tosUrl": "https://selfhosted.social/legal#privacy-policy",
+    "privacyUrl": "https://selfhosted.social/legal#terms-of-service",
+    "inviteCodeRequired": false
+  },
+   {
+    "url": "https://altq.net",
+    "supportedHandles": [
+      "altq.net"
+    ],
+    "maintainer": "@fry69.dev",
+    "inviteCodeRequired": "true"
   } 
 ]
