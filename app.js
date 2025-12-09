@@ -1,6 +1,14 @@
 // Load PDS data and populate table
+let allPDSData = []; // Store all data for filtering
+
 document.addEventListener('DOMContentLoaded', function() {
     loadPDSData();
+    
+    // Add event listeners for search and filters
+    document.getElementById('search-input').addEventListener('input', filterData);
+    document.querySelectorAll('input[name="invite-filter"]').forEach(radio => {
+        radio.addEventListener('change', filterData);
+    });
 });
 
 async function loadPDSData() {
@@ -13,6 +21,7 @@ async function loadPDSData() {
     try {
         const response = await fetch('./pdslist.json');
         const pdsData = await response.json();
+        allPDSData = pdsData; // Store for filtering
 
         // Hide loading
         loading.style.display = 'none';
@@ -31,11 +40,45 @@ async function loadPDSData() {
             const row = createTableRow(pds);
             tableBody.appendChild(row);
         });
+        
+        updateFilteredCount();
 
     } catch (error) {
         console.error('Error loading PDS data:', error);
         loading.innerHTML = '<p style="color: red;">Error loading database. Please check console.</p>';
     }
+}
+
+function filterData() {
+    const searchTerm = document.getElementById('search-input').value.toLowerCase();
+    const inviteFilter = document.querySelector('input[name="invite-filter"]:checked').value;
+    const tableBody = document.getElementById('table-body');
+    const rows = tableBody.querySelectorAll('tr');
+    
+    rows.forEach((row, index) => {
+        const pds = allPDSData[index];
+        
+        // Apply search filter
+        const searchMatch = !searchTerm || 
+            pds.url.toLowerCase().includes(searchTerm) ||
+            (pds.supportedHandles && pds.supportedHandles.some(h => h.toLowerCase().includes(searchTerm))) ||
+            (pds.maintainer && pds.maintainer.toLowerCase().includes(searchTerm));
+        
+        // Apply invite filter
+        const inviteMatch = inviteFilter === 'all' ||
+            (inviteFilter === 'yes' && pds.inviteCodeRequired) ||
+            (inviteFilter === 'no' && !pds.inviteCodeRequired);
+        
+        row.style.display = (searchMatch && inviteMatch) ? '' : 'none';
+    });
+    
+    updateFilteredCount();
+}
+
+function updateFilteredCount() {
+    const tableBody = document.getElementById('table-body');
+    const visibleRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => row.style.display !== 'none').length;
+    document.getElementById('filtered-count').textContent = visibleRows;
 }
 
 function createTableRow(pds) {
@@ -50,27 +93,15 @@ function createTableRow(pds) {
     urlCell.appendChild(urlLink);
     row.appendChild(urlCell);
     
-    // Handles
+    // Handles - stacked vertically
     const handlesCell = document.createElement('td');
+    handlesCell.style.whiteSpace = 'pre-line';
     if (pds.supportedHandles && pds.supportedHandles.length > 0) {
-        handlesCell.textContent = pds.supportedHandles.join(', ');
+        handlesCell.textContent = pds.supportedHandles.join('\n');
     } else {
         handlesCell.textContent = 'N/A';
     }
     row.appendChild(handlesCell);
-    
-    // Maintainer
-    const maintainerCell = document.createElement('td');
-    if (pds.maintainer) {
-        const link = document.createElement('a');
-        link.href = `https://madebydanny.uk/followonbsky?did=${pds.maintainer}`;
-        link.target = '_blank';
-        link.textContent = pds.maintainer;
-        maintainerCell.appendChild(link);
-    } else {
-        maintainerCell.textContent = '—';
-    }
-    row.appendChild(maintainerCell);
     
     // Contact Email
     const emailCell = document.createElement('td');
