@@ -109,7 +109,6 @@ A maintainer will review your submission and add it to the list.
 - Include test or development servers
 - Use HTTP (non-secure) URLs
 - Submit duplicate entries
-- Include servers you don't maintain without permission
 
 ## Review Process
 

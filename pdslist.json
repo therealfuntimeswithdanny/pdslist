@@ -20,8 +20,8 @@
     ],
     "contactEmail": "danielmorrisey@pm.me",
     "maintainer": "@madebydanny.uk",
-    "tosUrl": "https://pds.madebydanny.uk/about/privacy.html",
-    "privacyUrl": "https://pds.madebydanny.uk/about/terms.html",
+    "tosUrl": "https://pds.madebydanny.uk/about/terms.html",
+    "privacyUrl": "https://pds.madebydanny.uk/about/privacy.html",
     "inviteCodeRequired": false
   },
  {
@@ -33,8 +33,8 @@
     ],
     "contactEmail": "support@blacksky.app",
     "maintainer": "@blackskyweb.xyz",
-    "tosUrl": "https://blackskyweb.xyz/about/support/privacy-policy/",
-    "privacyUrl": "https://blackskyweb.xyz/about/support/tos/",
+    "privacyUrl": "https://blackskyweb.xyz/about/support/privacy-policy/",
+    "tosUrl": "https://blackskyweb.xyz/about/support/tos/",
     "inviteCodeRequired": false
   },
    {
@@ -44,16 +44,86 @@
     ],
     "contactEmail": "modmail@selfhosted.social",
     "maintainer": "@baileytownsend.dev",
-    "tosUrl": "https://selfhosted.social/legal#privacy-policy",
-    "privacyUrl": "https://selfhosted.social/legal#terms-of-service",
+    "privacyUrl": "https://selfhosted.social/legal#privacy-policy",
+    "tosUrl": "https://selfhosted.social/legal#terms-of-service",
     "inviteCodeRequired": false
   },
    {
     "url": "https://altq.net",
     "supportedHandles": [
-      "altq.net"
+      ".altq.net"
     ],
     "maintainer": "@fry69.dev",
     "inviteCodeRequired": "true"
-  } 
+  },
+  {
+    "url": "https://tngl.sh",
+    "supportedHandles": [
+      ".tngl.sh"
+    ],
+    "maintainer": "@tangled.org",
+    "inviteCodeRequired": "true"
+  },
+  {
+    "url": "https://pds.tgirl.cloud",
+    "supportedHandles": [
+    ".tgirl.beauty"
+    ],
+    "maintainer": "tgirl.cloud",
+    "inviteCodeRequired": "true"
+  },
+  {
+    "url": "https://pds.witchcraft.systems",
+    "supportedHandles": [
+      ".pds.witchcraft.systems"
+    ],
+    "maintainer": "@witchcraft.systems",
+    "inviteCodeRequired": "true"
+  },
+  {
+    "url": "https://evil.gay",
+    "supportedHandles": [
+    ".evil.gay",
+    ".pds.mmatt.net"
+    ],
+    "maintainer": "@mmatt.net",
+    "inviteCodeRequired": "true"
+  },
+  {    
+    "url": "https://totallynotseth.dev",
+    "supportedHandles": [
+    ".totallynotseth.dev"
+    ],
+    "maintainer": "@totallynotseth.dev",
+    "inviteCodeRequired": "true"
+  },
+  {    
+    "url": "https://pds.atpota.to",
+    "supportedHandles": [
+    ".flush.es",
+    ".on.anisota.net"
+    ],
+    "maintainer": "@dame.is",
+    "inviteCodeRequired": "true"
+  },
+  {    
+    "url": "https://katproto.girlonthemoon.xyz",
+    "supportedHandles": [
+    ".katproto.girlonthemoon.xyz"
+    ],
+    "maintainer": "@katproto.girlonthemoon.xyz",
+    "contactEmail": "witnesslachesis@disroot.org",
+    "inviteCodeRequired": "true"
+  },
+  {
+    "url": "https://pds.tophhie.cloud",
+    "supportedHandles": [
+      ".tophhie.social"
+    ],
+    "contactEmail": "help@tophhie.cloud",
+    "maintainer": "@tophhie.cloud",
+    "tosUrl": "https://blog.tophhie.cloud/atproto-tos/",
+    "privacyUrl": "https://blog.tophhie.cloud/atproto-privacy-policy/",
+    "inviteCodeRequired": false
+  }
 ]
