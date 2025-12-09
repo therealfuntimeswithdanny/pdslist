@@ -1,6 +1,7 @@
 # Bluesky PDS Directory
 
-**WILL MOVE TO Tangled SOON*tm***
+**WILL MOVE TO Tangled SOON *tm***
+
 A community-maintained directory of Bluesky Personal Data Servers *(PDS)*.
 
 ## JSON Structure
