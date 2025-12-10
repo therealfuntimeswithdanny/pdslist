@@ -1,5 +1,7 @@
-// Load PDS data and populate table
+// Load PDS data and populate tables
 let allPDSData = []; // Store all data for filtering
+let normalPDSData = []; // Regular PDSes
+let bskyNetworkData = []; // PDSes with bsky.network
 
 document.addEventListener('DOMContentLoaded', function() {
     loadPDSData();
@@ -9,12 +11,38 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('input[name="invite-filter"]').forEach(radio => {
         radio.addEventListener('change', filterData);
     });
+    
+    // Add toggle button listeners
+    document.getElementById('toggle-pds').addEventListener('click', function() {
+        const section = document.getElementById('pds-section');
+        const button = this;
+        if (section.style.display === 'none') {
+            section.style.display = 'block';
+            button.textContent = '▼ PDSes';
+        } else {
+            section.style.display = 'none';
+            button.textContent = '▶ PDSes';
+        }
+    });
+    
+    document.getElementById('toggle-bsky').addEventListener('click', function() {
+        const section = document.getElementById('bsky-section');
+        const button = this;
+        if (section.style.display === 'none') {
+            section.style.display = 'block';
+            button.textContent = '▼ PDSes ran by Bluesky';
+        } else {
+            section.style.display = 'none';
+            button.textContent = '▶ PDSes ran by Bluesky';
+        }
+    });
 });
 
 async function loadPDSData() {
     const loading = document.getElementById('loading');
     const content = document.getElementById('content');
     const tableBody = document.getElementById('table-body');
+    const bskyTableBody = document.getElementById('bsky-table-body');
     const noData = document.getElementById('no-data');
     const serverCount = document.getElementById('server-count');
 
@@ -22,6 +50,10 @@ async function loadPDSData() {
         const response = await fetch('./pdslist.json');
         const pdsData = await response.json();
         allPDSData = pdsData; // Store for filtering
+
+        // Separate PDSes by type
+        normalPDSData = pdsData.filter(pds => !pds.supportedHandles.some(h => h.includes('bsky.network')));
+        bskyNetworkData = pdsData.filter(pds => pds.supportedHandles.some(h => h.includes('bsky.network')));
 
         // Hide loading
         loading.style.display = 'none';
@@ -35,10 +67,16 @@ async function loadPDSData() {
         // Update server count
         serverCount.textContent = pdsData.length;
 
-        // Populate table
-        pdsData.forEach(pds => {
+        // Populate normal PDSes table
+        normalPDSData.forEach(pds => {
             const row = createTableRow(pds);
             tableBody.appendChild(row);
+        });
+
+        // Populate bsky.network PDSes table
+        bskyNetworkData.forEach(pds => {
+            const row = createTableRow(pds);
+            bskyTableBody.appendChild(row);
         });
         
         updateFilteredCount();
@@ -52,33 +90,47 @@ async function loadPDSData() {
 function filterData() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const inviteFilter = document.querySelector('input[name="invite-filter"]:checked').value;
+    
+    // Filter normal PDSes table
     const tableBody = document.getElementById('table-body');
     const rows = tableBody.querySelectorAll('tr');
-    
     rows.forEach((row, index) => {
-        const pds = allPDSData[index];
-        
-        // Apply search filter
-        const searchMatch = !searchTerm || 
-            pds.url.toLowerCase().includes(searchTerm) ||
-            (pds.supportedHandles && pds.supportedHandles.some(h => h.toLowerCase().includes(searchTerm))) ||
-            (pds.maintainer && pds.maintainer.toLowerCase().includes(searchTerm));
-        
-        // Apply invite filter
-        const inviteMatch = inviteFilter === 'all' ||
-            (inviteFilter === 'yes' && pds.inviteCodeRequired) ||
-            (inviteFilter === 'no' && !pds.inviteCodeRequired);
-        
-        row.style.display = (searchMatch && inviteMatch) ? '' : 'none';
+        const pds = normalPDSData[index];
+        row.style.display = shouldShowRow(pds, searchTerm, inviteFilter) ? '' : 'none';
+    });
+    
+    // Filter bsky.network PDSes table
+    const bskyTableBody = document.getElementById('bsky-table-body');
+    const bskyRows = bskyTableBody.querySelectorAll('tr');
+    bskyRows.forEach((row, index) => {
+        const pds = bskyNetworkData[index];
+        row.style.display = shouldShowRow(pds, searchTerm, inviteFilter) ? '' : 'none';
     });
     
     updateFilteredCount();
 }
 
+function shouldShowRow(pds, searchTerm, inviteFilter) {
+    // Apply search filter
+    const searchMatch = !searchTerm || 
+        pds.url.toLowerCase().includes(searchTerm) ||
+        (pds.supportedHandles && pds.supportedHandles.some(h => h.toLowerCase().includes(searchTerm))) ||
+        (pds.maintainer && pds.maintainer.toLowerCase().includes(searchTerm));
+    
+    // Apply invite filter
+    const inviteMatch = inviteFilter === 'all' ||
+        (inviteFilter === 'yes' && pds.inviteCodeRequired) ||
+        (inviteFilter === 'no' && !pds.inviteCodeRequired);
+    
+    return searchMatch && inviteMatch;
+}
+
 function updateFilteredCount() {
     const tableBody = document.getElementById('table-body');
+    const bskyTableBody = document.getElementById('bsky-table-body');
     const visibleRows = Array.from(tableBody.querySelectorAll('tr')).filter(row => row.style.display !== 'none').length;
-    document.getElementById('filtered-count').textContent = visibleRows;
+    const visibleBskyRows = Array.from(bskyTableBody.querySelectorAll('tr')).filter(row => row.style.display !== 'none').length;
+    document.getElementById('filtered-count').textContent = visibleRows + visibleBskyRows;
 }
 
 function createTableRow(pds) {
